@@ -51,7 +51,7 @@ namespace House_of_Horrorv2
             }
 
             // Introduce a short delay before shutting down the application
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(60) };
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(30) };
             timer.Tick += (s, args) =>
             {
                 timer.Stop();
