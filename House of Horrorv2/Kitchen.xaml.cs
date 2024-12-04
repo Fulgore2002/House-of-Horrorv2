@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace House_of_Horrorv2
 {
@@ -71,7 +60,7 @@ namespace House_of_Horrorv2
         {
             KitchenText.Text += "\nYou investigate the noise and find a ghostly figure!";
             KitchenText.Text += "\nThe ghostly figure holds out a rusty key and whispers, 'Take it...'";
-            player.Inventory.AddItem("Rusty Key");
+            player.Inventory.AddItem(new Item("Rusty Key"));
             KitchenText.Text += "\nYou take the rusty key and the ghostly figure vanishes.";
             YesWhisperButton.Visibility = Visibility.Collapsed;
             NoWhisperButton.Visibility = Visibility.Collapsed;
@@ -80,10 +69,15 @@ namespace House_of_Horrorv2
         private void NoWhisperButton_Click(object sender, RoutedEventArgs e)
         {
             KitchenText.Text += "\nYou decide not to investigate the noise and leave the kitchen.";
-            YesWhisperButton.Visibility = Visibility.Collapsed;
-            NoWhisperButton.Visibility = Visibility.Collapsed;
+
+            // Introduce a short delay before shutting down the application
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Tick += (s, args) =>
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            };
+            timer.Start();
         }
     }
 }
-
-

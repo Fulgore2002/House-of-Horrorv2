@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace House_of_Horrorv2
 {
@@ -30,7 +19,7 @@ namespace House_of_Horrorv2
             if (VaseChoiceButton.Content.ToString() == "Open the Vase")
             {
                 DiningRoomText.Text += "\nYou open the vase and find a pile of bones.";
-                player.Inventory.AddItem("Bones");
+                player.Inventory.AddItem(new Item("Bones"));
                 VaseChoiceButton.Content = "Leave the Vase";
             }
             else
@@ -48,19 +37,29 @@ namespace House_of_Horrorv2
         private void RunButton_Click(object sender, RoutedEventArgs e)
         {
             DiningRoomText.Text += "\nYou run as fast as you can and manage to escape the dark figure.";
+
+            // Hide the Run and Fight buttons
             RunButton.Visibility = Visibility.Collapsed;
             FightButton.Visibility = Visibility.Collapsed;
+
         }
+
 
         private void FightButton_Click(object sender, RoutedEventArgs e)
         {
             DiningRoomText.Text += "\nYou try to fight the dark figure, but it overpowers you, knocking you unconscious.";
             DiningRoomText.Text += "\nYou wake up in your bed. It was all a dream.";
-            player.ClearInventory();
-            RunButton.Visibility = Visibility.Collapsed;
-            FightButton.Visibility = Visibility.Collapsed;
+            player.Inventory.Clear();
+
+            // Introduce a short delay before shutting down the application
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Tick += (s, args) =>
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            };
+            timer.Start();
         }
+
     }
 }
-
-

@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace House_of_Horrorv2
 {
@@ -31,7 +21,7 @@ namespace House_of_Horrorv2
             {
                 LivingRoomText.Text += "\nYou give the bones to the pitbull, who happily munches on them.";
                 LivingRoomText.Text += "\nYou take the jewelry while the pitbull is distracted.";
-                player.Inventory.AddItem("Gold Jewelry");
+                player.Inventory.AddItem(new Item("Gold Jewelry"));
                 player.Inventory.RemoveItem("Bones");
             }
             else
@@ -39,7 +29,7 @@ namespace House_of_Horrorv2
                 LivingRoomText.Text += "\nYou attempt to steal the jewelry, but the pitbull wakes up and rips your shirt to shreds.";
                 LivingRoomText.Text += "\nGame Over. You have been attacked by the pitbull.";
                 player.GameOver = true;
-                player.ClearInventory(); // Clear the player's inventory
+                player.ClearInventory();
             }
 
             PitbullChoiceButton.Visibility = Visibility.Collapsed;
@@ -56,8 +46,17 @@ namespace House_of_Horrorv2
         {
             LivingRoomText.Text += "\nYou decide not to steal the dog's jewelry.";
             LivingRoomText.Text += "\nYou turn back and find your way out of the house safely.";
-            LeaveButton.Visibility = Visibility.Collapsed;
+
+            // Introduce a short delay before shutting down the application
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Tick += (s, args) =>
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            };
+            timer.Start();
         }
+
+
     }
 }
-

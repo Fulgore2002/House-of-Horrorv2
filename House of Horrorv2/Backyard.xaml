@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="400" Width="600">
     <Grid>
-        <TextBlock Name="BackyardText" Text="You chose to go into the backyard. As you walk outside, you see an old shed with a rusty lock." TextWrapping="Wrap" Margin="10"/>
+        <TextBlock Name="BackyardText" Text="You chose to go into the backyard. As you walk outside, you see an old shed with a rusty lock." TextWrapping="Wrap" Margin="10" Background="#FFA48A65"/>
         <StackPanel VerticalAlignment="Bottom" Margin="10">
             <Button Name="KeyCheckButton" Content="Check for Rusty Key" Click="KeyCheckButton_Click"/>
             <Button Name="ShedChoiceButton" Content="Try the Rusty Key on the Lock" Click="ShedChoiceButton_Click" Visibility="Collapsed"/>
             <Button Name="LeaveButton" Content="Leave" Click="LeaveButton_Click" Visibility="Collapsed"/>
+            <Button Name="YesButton" Content="Yes" Click="YesButton_Click" Visibility="Collapsed"/>
+            <Button Name="NoButton" Content="No" Click="NoButton_Click" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>
 </UserControl>

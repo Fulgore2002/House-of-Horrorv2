@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using House_of_Horrorv2;
+using System.Windows.Threading;
 
 namespace House_of_Horrorv2
 {
@@ -36,6 +24,8 @@ namespace House_of_Horrorv2
             {
                 BackyardText.Text += "\nDo you want to try the rusty key on the lock?";
                 ShedChoiceButton.Visibility = Visibility.Visible;
+                KeyCheckButton.Visibility = Visibility.Collapsed;
+
             }
         }
 
@@ -43,16 +33,47 @@ namespace House_of_Horrorv2
         {
             BackyardText.Text += "\nYou use the rusty key to open the lock. The key breaks as you unlock the door. Inside, you find a hidden stash of gold coins.";
             player.Inventory.RemoveItem("Rusty Key");
-            player.Inventory.AddItem("Gold Coins");
+            player.Inventory.AddItem(new Item("Gold Coins"));
             ShedChoiceButton.Visibility = Visibility.Collapsed;
             LeaveButton.Visibility = Visibility.Visible;
         }
 
         private void LeaveButton_Click(object sender, RoutedEventArgs e)
         {
-            BackyardText.Text += "\nAs you turn to leave, you hear a rustling sound coming from the bushes. Do you want to investigate the bushes? (yes/no) WARNING!";
-            // Add logic for handling the investigation choice and possible game over scenario here.
+            BackyardText.Text += "\nAs you turn to leave, you hear a rustling sound coming from the bushes. Do you want to investigate the bushes? (yes/no)";
+            YesButton.Visibility = Visibility.Visible;
+            NoButton.Visibility = Visibility.Visible;
+            LeaveButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackyardText.Text += "\nYou decide to investigate the bushes and find a hidden pathway.";
+            BackyardText.Text += "\nSuddenly, a raccoon jumps out and attacks you!";
+            BackyardText.Text += "\nGame Over. You have been attacked by a raccoon.";
+
+            // Hide the Yes and No buttons
+            YesButton.Visibility = Visibility.Collapsed;
+            NoButton.Visibility = Visibility.Collapsed;
+
+            // Introduce a short delay before shutting down the application
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Tick += (s, args) =>
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            };
+            timer.Start();
+        }
+
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackyardText.Text += "\nYou decide not to investigate the bushes and leave the backyard.";
+            YesButton.Visibility = Visibility.Collapsed;
+            NoButton.Visibility = Visibility.Collapsed;
+
+
         }
     }
 }
-

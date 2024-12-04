@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="House_of_Horrorv2.Backyard" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAgAAAAAAAAAAAABAABAAEAEAAAAAA=</HashCode>
+      <FileName>Backyard.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.DiningRoom" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAACAAAAAAAAAAAAAAABAABAAAAAAAA=</HashCode>
+      <FileName>DiningRoom.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.Inventory">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgEAQAAAAEAAAAgAAAAAgAAAAAAEAAAAAABAAAA=</HashCode>
+      <FileName>Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="House_of_Horrorv2.Kitchen" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAQACAAEAAAAAAAAAAgAABAACAEAAAAAA=</HashCode>
+      <FileName>Kitchen.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.LivingRoom" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACIAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>LivingRoom.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAICAAAAAAABBAAAAAAAgAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.MasterBedroom" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAIIAAAgAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>MasterBedroom.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="House_of_Horrorv2.Player">
+    <Position X="7.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAggAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="House_of_Horrorv2.Item" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="House_of_Horrorv2.Weapon" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="House_of_Horrorv2.HealthPotion" Collapsed="true">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="House_of_Horrorv2.GoldCoin" Collapsed="true">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,42 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace House_of_Horrorv2
 {
     public class Inventory
     {
-        private List<string> items;
+        private List<Item> items;
 
         public Inventory()
         {
-            items = new List<string>();
+            items = new List<Item>();
         }
 
-        public void AddItem(string item)
+        public void AddItem(Item item)
         {
             items.Add(item);
-            Console.WriteLine($"{item} has been added to your inventory.");
+            Console.WriteLine($"{item.Name} has been added to your inventory.");
         }
 
-        public void RemoveItem(string item)
+        public void RemoveItem(string itemName)
         {
-            if (items.Contains(item))
+            var item = items.FirstOrDefault(i => i.Name == itemName);
+            if (item != null)
             {
                 items.Remove(item);
-                Console.WriteLine($"{item} has been removed from your inventory.");
+                Console.WriteLine($"{item.Name} has been removed from your inventory.");
             }
             else
             {
-                Console.WriteLine($"{item} is not in your inventory.");
+                Console.WriteLine($"{itemName} is not in your inventory.");
             }
         }
 
-        public bool HasItem(string item)
+        public bool HasItem(string itemName)
         {
-            return items.Contains(item);
+            return items.Any(i => i.Name == itemName);
+        }
+
+        public Item GetItem(string itemName)
+        {
+            return items.FirstOrDefault(i => i.Name == itemName);
         }
 
         public void ShowInventory()
@@ -46,7 +51,7 @@ namespace House_of_Horrorv2
                 Console.WriteLine("You have the following items in your inventory:");
                 foreach (var item in items)
                 {
-                    Console.WriteLine($"- {item}");
+                    Console.WriteLine($"- {item.Name}");
                 }
             }
             else
@@ -54,11 +59,30 @@ namespace House_of_Horrorv2
                 Console.WriteLine("Your inventory is empty.");
             }
         }
+
         public void Clear()
         {
-            // Clear the player's inventory
             items.Clear();
             Console.WriteLine("Game Over! Your inventory has been cleared.");
+        }
+
+        public void LoadItemsFromFile(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(',');
+                    string itemName = parts[0];
+                    int quantity = int.Parse(parts[1]);
+                    AddItem(new Item(itemName, quantity));
+                }
+            }
+            else
+            {
+                Console.WriteLine("File not found.");
+            }
         }
     }
 }

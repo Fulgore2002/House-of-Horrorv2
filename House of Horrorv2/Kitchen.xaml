@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="400" Width="600">
     <Grid>
-        <TextBlock Name="KitchenText" Text="You chose to go into the kitchen. As you walk in, you see a refrigerator humming loudly." TextWrapping="Wrap" Margin="10"/>
+        <TextBlock Name="KitchenText" Text="You chose to go into the kitchen. As you walk in, you see a refrigerator humming loudly." TextWrapping="Wrap" Margin="10" Background="#FF88DDF0"/>
         <StackPanel VerticalAlignment="Bottom" Margin="10">
             <Button Name="FridgeChoiceButton" Content="Open the Refrigerator" Click="FridgeChoiceButton_Click"/>
             <Button Name="PantryChoiceButton" Content="Investigate the Pantry Noise" Click="PantryChoiceButton_Click" Visibility="Collapsed"/>

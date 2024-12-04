@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace House_of_Horrorv2
 {
@@ -35,8 +25,8 @@ namespace House_of_Horrorv2
         private void ItemChoiceButton_Click(object sender, RoutedEventArgs e)
         {
             MasterBedroomText.Text += "\nYou take the golden locket and the Holy Relic, feeling a chill run down your spine.";
-            player.Inventory.AddItem("Golden Locket");
-            player.Inventory.AddItem("Holy Relic");
+            player.Inventory.AddItem(new Item("Golden Locket"));
+            player.Inventory.AddItem(new Item("Holy Relic"));
             ItemChoiceButton.Visibility = Visibility.Collapsed;
             LeaveButton.Visibility = Visibility.Visible;
         }
@@ -59,6 +49,15 @@ namespace House_of_Horrorv2
             {
                 MasterBedroomText.Text += "\nYou notice a hidden door behind a tapestry, but it remains tightly shut. It seems you need more items to unlock it.";
             }
+
+            // Introduce a short delay before shutting down the application
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(60) };
+            timer.Tick += (s, args) =>
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            };
+            timer.Start();
         }
 
         private void CleansingHouse()
@@ -72,10 +71,22 @@ namespace House_of_Horrorv2
             player.Inventory.RemoveItem("Holy Relic");
             player.Inventory.RemoveItem("Golden Locket");
 
-            // End the game
-            MasterBedroomText.Text += "\nCongratulations! Though you may not have found what you initially sought, you have performed a noble deed and brought peace to the haunted mansion.";
+            // Display the congratulatory message
+            //External Data
+            string relativePath = @"..\..\..\data\Congratulations.txt";
+            string absolutePath = Path.GetFullPath(relativePath);
+
+            try
+            {
+                string fileContent = File.ReadAllText(absolutePath);
+                MasterBedroomText.Text += "\n" + fileContent;
+            }
+            catch (FileNotFoundException)
+            {
+                MasterBedroomText.Text += "\nFile not found. Please check the path and filename.";
+            }
+
             player.ClearInventory();
         }
     }
 }
-
