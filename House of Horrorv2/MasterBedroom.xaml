@@ -12,7 +12,9 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Name="MasterBedroomText" Text="You chose to go into the master bedroom. As you walk in, you see an ornate bed and a large, dusty wardrobe." TextWrapping="Wrap" Margin="10" Background="#FFE8B2B2" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <ScrollViewer Grid.Row="0" Grid.ColumnSpan="2" Margin="10" VerticalScrollBarVisibility="Auto">
+            <TextBlock Name="MasterBedroomText" Text="You chose to go into the master bedroom. As you walk in, you see an ornate bed and a large, dusty wardrobe." TextWrapping="Wrap" Background="#FFE8B2B2"/>
+        </ScrollViewer>
 
         <TextBlock Name="TimerTextBlock" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,40,20" Grid.Row="0" Grid.Column="1"/>
 
