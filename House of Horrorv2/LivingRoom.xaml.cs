@@ -8,6 +8,8 @@ namespace House_of_Horrorv2
     public partial class LivingRoom : UserControl
     {
         private Player player;
+        private DispatcherTimer timer;
+        private TimeSpan timeRemaining;
 
         public LivingRoom(Player player)
         {
@@ -47,16 +49,30 @@ namespace House_of_Horrorv2
             LivingRoomText.Text += "\nYou decide not to steal the dog's jewelry.";
             LivingRoomText.Text += "\nYou turn back and find your way out of the house safely.";
 
-            // Introduce a short delay before shutting down the application
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
-            timer.Tick += (s, args) =>
-            {
-                timer.Stop();
-                Application.Current.Shutdown(); // End the game
-            };
+            // Start the timer
+            StartTimer();
+        }
+
+        private void StartTimer()
+        {
+            timeRemaining = TimeSpan.FromSeconds(5);
+            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (timeRemaining > TimeSpan.Zero)
+            {
+                timeRemaining = timeRemaining.Add(TimeSpan.FromSeconds(-1));
+                TimerTextBlock.Text = $"Until Shutdown: {timeRemaining:mm\\:ss}";
+            }
+            else
+            {
+                timer.Stop();
+                Application.Current.Shutdown(); // End the game
+            }
+        }
     }
 }

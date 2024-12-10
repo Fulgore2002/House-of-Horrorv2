@@ -1,15 +1,37 @@
 ﻿<Window x:Class="House_of_Horrorv2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:House_of_Horrorv2"
         Title="Haunted Mansion Game" Height="450" Width="800">
     <Grid>
-        <Button Content="Living Room" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LivingRoom_Click"/>
-        <Button Content="Dining Room" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Click="DiningRoom_Click"/>
-        <Button Content="Kitchen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0" Click="Kitchen_Click"/>
-        <Button Content="Backyard" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,120,0,0" Click="Backyard_Click"/>
-        <Button Content="Master Bedroom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,160,0,0" Click="MasterBedroom_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <ContentControl Name="ContentArea" HorizontalAlignment="Right" VerticalAlignment="Top" Width="600" Height="400"/>
+        <!-- Room Buttons -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <Button Content="Living Room" HorizontalAlignment="Left" Click="LivingRoom_Click" Margin="5"/>
+            <Button Content="Dining Room" HorizontalAlignment="Left" Click="DiningRoom_Click" Margin="5"/>
+            <Button Content="Kitchen" HorizontalAlignment="Left" Click="Kitchen_Click" Margin="5"/>
+            <Button Content="Backyard" HorizontalAlignment="Left" Click="Backyard_Click" Margin="5"/>
+            <Button Content="Master Bedroom" HorizontalAlignment="Left" Click="MasterBedroom_Click" Margin="5"/>
+        </StackPanel>
+
+        <!-- Content Area -->
+        <ContentControl Name="ContentArea" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Margin="10"/>
+
+        <!-- Inventory Display -->
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Inventory:" FontWeight="Bold"/>
+            <TextBlock Name="InventoryTextBlock" Margin="5,0,0,0"/>
+        </StackPanel>
+
+        <!-- Media Element for Background Music -->
+        <MediaElement Name="BackgroundMusic" LoadedBehavior="Manual" UnloadedBehavior="Stop" Visibility="Collapsed" MediaEnded="BackgroundMusic_MediaEnded"/>
     </Grid>
 </Window>

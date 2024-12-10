@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="400" Width="600">
     <Grid>
-        <TextBlock Name="LivingRoomText" Text="You chose to go into the living room. As you walk in, you see a sleeping pitbull guarding some gold jewelry." TextWrapping="Wrap" Margin="10" Background="#FFDFE990"/>
-        <StackPanel VerticalAlignment="Bottom" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="369*"/>
+            <RowDefinition Height="31*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="LivingRoomText" Text="You chose to go into the living room. As you walk in, you see a sleeping pitbull guarding some gold jewelry." TextWrapping="Wrap" Margin="10,10,10,10" Background="#FFDFE990" Grid.RowSpan="2"/>
+        <TextBlock Name="TimerTextBlock" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" Margin="0,300,40,0" />
+        <StackPanel VerticalAlignment="Top" Margin="10,1,10,0" Grid.Row="1">
             <Button Name="PitbullChoiceButton" Content="Steal the Jewelry" Click="PitbullChoiceButton_Click"/>
             <Button Name="RunButton" Content="Run" Click="RunButton_Click" Visibility="Collapsed"/>
             <Button Name="LeaveButton" Content="Leave" Click="LeaveButton_Click" Visibility="Collapsed"/>

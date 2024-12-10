@@ -3,11 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="400" Width="600">
     <Grid>
-        <TextBlock Name="MasterBedroomText" Text="You chose to go into the master bedroom. As you walk in, you see an ornate bed and a large, dusty wardrobe." TextWrapping="Wrap" Margin="10" Background="#FFE8B2B2"/>
-        <StackPanel VerticalAlignment="Bottom" Margin="10">
-            <Button Name="WardrobeChoiceButton" Content="Open the Wardrobe" Click="WardrobeChoiceButton_Click"/>
-            <Button Name="ItemChoiceButton" Content="Take the Locket and Holy Relic" Click="ItemChoiceButton_Click" Visibility="Collapsed"/>
-            <Button Name="LeaveButton" Content="Leave" Click="LeaveButton_Click" Visibility="Collapsed"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="MasterBedroomText" Text="You chose to go into the master bedroom. As you walk in, you see an ornate bed and a large, dusty wardrobe." TextWrapping="Wrap" Margin="10" Background="#FFE8B2B2" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+        <TextBlock Name="TimerTextBlock" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,40,20" Grid.Row="0" Grid.Column="1"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <Button Name="WardrobeChoiceButton" Content="Open the Wardrobe" Click="WardrobeChoiceButton_Click" Margin="5"/>
+            <Button Name="ItemChoiceButton" Content="Take the Locket and Holy Relic" Click="ItemChoiceButton_Click" Visibility="Collapsed" Margin="5"/>
+            <Button Name="LeaveButton" Content="Cleanse" Click="LeaveButton_Click" Visibility="Collapsed" Margin="5"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -44,45 +44,30 @@ namespace House_of_Horrorv2
             return items.FirstOrDefault(i => i.Name == itemName);
         }
 
-        public void ShowInventory()
-        {
-            if (items.Count > 0)
-            {
-                Console.WriteLine("You have the following items in your inventory:");
-                foreach (var item in items)
-                {
-                    Console.WriteLine($"- {item.Name}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Your inventory is empty.");
-            }
-        }
-
         public void Clear()
         {
             items.Clear();
             Console.WriteLine("Game Over! Your inventory has been cleared.");
         }
 
-        public void LoadItemsFromFile(string filePath)
+        public string GetInventoryString()
         {
-            if (File.Exists(filePath))
+            if (items.Count == 0)
             {
-                string[] lines = File.ReadAllLines(filePath);
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(',');
-                    string itemName = parts[0];
-                    int quantity = int.Parse(parts[1]);
-                    AddItem(new Item(itemName, quantity));
-                }
+                return "Your inventory is empty.";
             }
-            else
+
+            var inventoryList = "You are carrying:\n";
+            foreach (var item in items)
             {
-                Console.WriteLine("File not found.");
+                inventoryList += $"{item.Quantity} x {item.Name}\n";
             }
+            return inventoryList;
+        }
+
+        public void ShowInventory()
+        {
+            Console.WriteLine(GetInventoryString());
         }
     }
 }

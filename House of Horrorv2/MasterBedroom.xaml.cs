@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -8,6 +9,8 @@ namespace House_of_Horrorv2
     public partial class MasterBedroom : UserControl
     {
         private Player player;
+        private DispatcherTimer timer;
+        private TimeSpan timeRemaining;
 
         public MasterBedroom(Player player)
         {
@@ -50,14 +53,30 @@ namespace House_of_Horrorv2
                 MasterBedroomText.Text += "\nYou notice a hidden door behind a tapestry, but it remains tightly shut. It seems you need more items to unlock it.";
             }
 
-            // Introduce a short delay before shutting down the application
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(30) };
-            timer.Tick += (s, args) =>
+            // Start the timer
+            StartTimer();
+        }
+
+        private void StartTimer()
+        {
+            timeRemaining = TimeSpan.FromSeconds(30);
+            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (timeRemaining > TimeSpan.Zero)
+            {
+                timeRemaining = timeRemaining.Add(TimeSpan.FromSeconds(-1));
+                TimerTextBlock.Text = $"Until Shutdown: {timeRemaining:mm\\:ss}";
+            }
+            else
             {
                 timer.Stop();
                 Application.Current.Shutdown(); // End the game
-            };
-            timer.Start();
+            }
         }
 
         private void CleansingHouse()
